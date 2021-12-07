@@ -9,6 +9,17 @@ import Status from './Status';
 import Error from './Error';
 
 export default function Appointment(props) {
-  const text = props.time ? `Appointment at ${props.time}` : 'No appointments';
-  return <article className="appointment">{text}</article>;
+  return (
+    <>
+      <Header time={props.time}></Header>
+      {props.interview ? (
+        <Show
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.name}
+        />
+      ) : (
+        <Empty />
+      )}
+    </>
+  );
 }
