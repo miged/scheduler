@@ -24,6 +24,17 @@ export default function useApplicationData(props) {
     });
   }, []);
 
+  // calculate number of spots
+  for (let dayId in state.days) {
+    let spots = 0;
+    for (let appId of state.days[dayId].appointments) {
+      if (!state.appointments[appId].interview) {
+        spots += 1;
+      }
+    }
+    state.days[dayId].spots = spots;
+  }
+
   function setDay(day) {
     setState({ ...state, day });
   }
