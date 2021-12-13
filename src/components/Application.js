@@ -61,26 +61,31 @@ export default function Application(props) {
       [id]: appointment,
     };
 
-    setState({
-      ...state,
-      appointments,
-    });
-    axios.put(`http://localhost:8001/api/appointments/${id}`, {
-      interview,
-    });
+    return axios
+      .put(`http://localhost:8001/api/appointments/${id}`, {
+        interview,
+      })
+      .then(() => {
+        setState({
+          ...state,
+          appointments,
+        });
+      });
   }
 
   function cancelInterview(id) {
-    const appointments = {
-      ...state.appointments,
-    };
-    appointments[id].interview = null;
-
-    setState({
-      ...state,
-      appointments,
-    });
-    axios.delete(`http://localhost:8001/api/appointments/${id}`);
+    return axios
+      .delete(`http://localhost:8001/api/appointments/${id}`)
+      .then(() => {
+        const appointments = {
+          ...state.appointments,
+        };
+        appointments[id].interview = null;
+        setState({
+          ...state,
+          appointments,
+        });
+      });
   }
 
   return (
