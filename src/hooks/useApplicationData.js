@@ -11,9 +11,9 @@ export default function useApplicationData(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get('http://localhost:8001/api/days'),
-      axios.get('http://localhost:8001/api/appointments'),
-      axios.get('http://localhost:8001/api/interviewers'),
+      axios.get('/api/days'),
+      axios.get('/api/appointments'),
+      axios.get('/api/interviewers'),
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
@@ -51,7 +51,7 @@ export default function useApplicationData(props) {
     };
 
     return axios
-      .put(`http://localhost:8001/api/appointments/${id}`, {
+      .put(`/api/appointments/${id}`, {
         interview,
       })
       .then(() => {
@@ -63,18 +63,16 @@ export default function useApplicationData(props) {
   }
 
   function cancelInterview(id) {
-    return axios
-      .delete(`http://localhost:8001/api/appointments/${id}`)
-      .then(() => {
-        const appointments = {
-          ...state.appointments,
-        };
-        appointments[id].interview = null;
-        setState({
-          ...state,
-          appointments,
-        });
+    return axios.delete(`/api/appointments/${id}`).then(() => {
+      const appointments = {
+        ...state.appointments,
+      };
+      appointments[id].interview = null;
+      setState({
+        ...state,
+        appointments,
       });
+    });
   }
 
   return {
