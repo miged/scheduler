@@ -25,9 +25,9 @@ export default function useApplicationData(props) {
   }, []);
 
   // calculate number of spots
-  for (let dayId in state.days) {
+  for (const dayId in state.days) {
     let spots = 0;
-    for (let appId of state.days[dayId].appointments) {
+    for (const appId of state.days[dayId].appointments) {
       if (!state.appointments[appId].interview) {
         spots += 1;
       }
