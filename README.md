@@ -1,22 +1,26 @@
 # Interview Scheduler
 
-## Setup
+A single-page application for scheduling interviews. Built with React.
 
-Install dependencies with `npm install`.
+[Demo](https://scheduler-miguel.netlify.app/)
 
-## Running Webpack Development Server
+!["Screnshot ..."](docs/screenshot.png)
+
+## Usage
+
+Install dependencies:
+
+```sh
+npm install
+```
+
+Run server locally:
 
 ```sh
 npm start
 ```
 
-## Running Jest Test Framework
-
-```sh
-npm test
-```
-
-## Running Storybook Visual Testbed
+Run Storybook Visual Testbed:
 
 ```sh
 npm run storybook
